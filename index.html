@@ -1,0 +1,804 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PIDVISKA — зухвала біжутерія</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --toxic-green: #ccff00;
+        --toxic-blue: #00f0ff;
+
+        --glass-bg: rgba(255, 255, 255, 0.65);
+        --glass-border: rgba(255, 255, 255, 0.8);
+        --text-main: #111111;
+        --text-muted: #555555;
+        --shadow-toxic: 0 10px 30px rgba(204, 255, 0, 0.4);
+        --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.05);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+      }
+
+      body {
+        background-color: #e5e7eb;
+        background-image:
+          radial-gradient(
+            circle at 10% 20%,
+            rgba(204, 255, 0, 0.5) 0%,
+            transparent 40%
+          ),
+          radial-gradient(
+            circle at 90% 60%,
+            rgba(0, 240, 255, 0.4) 0%,
+            transparent 40%
+          ),
+          radial-gradient(
+            circle at 50% 100%,
+            rgba(204, 255, 0, 0.3) 0%,
+            transparent 50%
+          );
+        background-attachment: fixed;
+        color: var(--text-main);
+        font-family: "Manrope", sans-serif;
+        padding: 30px 10px 0px;
+        line-height: 1.5;
+        animation: pulseBg 10s ease-in-out infinite alternate;
+      }
+
+      @keyframes pulseBg {
+        0% {
+          background-position: 0% 0%;
+        }
+        100% {
+          background-position: 100% 100%;
+        }
+      }
+
+      .container {
+        width: 100%;
+        max-width: 520px;
+        margin: 0 auto;
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border);
+        position: relative;
+        box-shadow: var(--shadow-glass);
+        border-radius: 24px 24px 0 0;
+        overflow: hidden;
+      }
+
+      header {
+        padding: 50px 24px 40px;
+        position: relative;
+        text-align: center;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--text-main);
+        background: var(--toxic-green);
+        padding: 4px 12px;
+        border-radius: 20px;
+        margin: 0 0 20px;
+        box-shadow: 0 0 15px rgba(204, 255, 0, 0.6);
+      }
+
+      h1 {
+        font-family: "Syne", sans-serif;
+        font-weight: 800;
+        font-size: 56px;
+        letter-spacing: -1px;
+        text-transform: uppercase;
+        margin: 0 0 12px;
+        line-height: 1;
+        color: var(--text-main);
+      }
+
+      .tagline {
+        font-size: 16px;
+        font-weight: 700;
+        margin: 0 0 10px;
+      }
+
+      .lede {
+        font-size: 14px;
+        color: var(--text-muted);
+        font-weight: 500;
+        margin-top: 10px;
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .quick-nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(15px);
+        display: flex;
+        gap: 8px;
+        padding: 16px 20px;
+        overflow-x: auto;
+        border-bottom: 1px solid var(--glass-border);
+        border-top: 1px solid var(--glass-border);
+        scrollbar-width: none;
+      }
+
+      .quick-nav::-webkit-scrollbar {
+        display: none;
+      }
+
+      .quick-nav a {
+        flex: 0 0 auto;
+        font-size: 11px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-decoration: none;
+        color: var(--text-main);
+        padding: 10px 16px;
+        border-radius: 30px;
+        background: #fff;
+        border: 1px solid transparent;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+      }
+
+      .quick-nav a:hover {
+        background: var(--toxic-green);
+        box-shadow: var(--shadow-toxic);
+        transform: translateY(-2px);
+      }
+
+      section {
+        padding: 40px 24px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        scroll-margin-top: 60px;
+      }
+
+      section:last-of-type {
+        border-bottom: none;
+      }
+
+      .sec-label {
+        font-family: "Syne", sans-serif;
+        font-size: 28px;
+        font-weight: 800;
+        text-transform: uppercase;
+        color: var(--text-main);
+        margin: 0 0 24px;
+      }
+
+      .row {
+        display: flex;
+        gap: 16px;
+        padding: 16px 0;
+        align-items: flex-start;
+        font-size: 14px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .row:last-child {
+        border-bottom: none;
+      }
+
+      .row .k {
+        font-size: 12px;
+        font-weight: 800;
+        color: var(--text-muted);
+        min-width: 90px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .row .v {
+        flex: 1;
+        font-weight: 600;
+      }
+
+      .note {
+        font-size: 12px;
+        font-weight: 700;
+        background: rgba(0, 240, 255, 0.15);
+        border-left: 4px solid var(--toxic-blue);
+        padding: 14px 16px;
+        margin-top: 20px;
+        border-radius: 0 8px 8px 0;
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 24px;
+      }
+
+      .tag {
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding: 10px 18px;
+        border: 2px solid #fff;
+        border-radius: 30px;
+        text-decoration: none;
+        color: var(--text-main);
+        background: rgba(255, 255, 255, 0.5);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .tag:hover {
+        background: #fff;
+        border-color: var(--toxic-green);
+      }
+
+      .tag.active {
+        background: var(--toxic-green);
+        border-color: var(--toxic-green);
+        box-shadow: var(--shadow-toxic);
+      }
+
+      .tag .count {
+        font-size: 11px;
+        margin-left: 6px;
+        opacity: 0.7;
+      }
+
+      .catalog-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .product {
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 6px;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+        border: 1px solid transparent;
+      }
+
+      .product:hover {
+        border-color: var(--toxic-green);
+        box-shadow: var(--shadow-toxic);
+        transform: translateY(-5px) scale(1.02);
+      }
+
+      .product .photo-wrap {
+        aspect-ratio: 1/1;
+        background: #f4f4f4;
+        border-radius: 12px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .product .photo-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+      }
+
+      .product:hover .photo-wrap img {
+        transform: scale(1.1);
+      }
+
+      .product .badge-stock {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background: var(--toxic-green);
+        color: #000;
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding: 6px 10px;
+        border-radius: 20px;
+      }
+
+      .product .info {
+        padding: 16px 10px 10px;
+      }
+
+      .product .p-name {
+        font-family: "Syne", sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        margin: 0 0 6px;
+        line-height: 1.2;
+      }
+
+      .product .p-price {
+        font-size: 15px;
+        font-weight: 800;
+        color: var(--text-main);
+        margin: 0;
+      }
+
+      .p-sizes {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 10px;
+      }
+
+      .p-size {
+        font-size: 10px;
+        font-weight: 800;
+        background: #f0f0f0;
+        border-radius: 6px;
+        padding: 4px 8px;
+      }
+
+      .catalog-empty {
+        font-size: 14px;
+        font-weight: 700;
+        text-align: center;
+        padding: 40px 0;
+        display: none;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 12px;
+      }
+
+      .load-more {
+        display: block;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.5);
+        border: 2px dashed var(--text-muted);
+        color: var(--text-main);
+        font-family: "Syne", sans-serif;
+        font-weight: 800;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        padding: 16px;
+        margin-top: 24px;
+        cursor: pointer;
+        border-radius: 16px;
+        transition: all 0.3s ease;
+      }
+
+      .load-more:hover {
+        background: var(--toxic-green);
+        border-color: var(--toxic-green);
+        box-shadow: var(--shadow-toxic);
+        transform: translateY(-2px);
+      }
+
+      .steps {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        counter-reset: step;
+      }
+
+      .steps li {
+        counter-increment: step;
+        display: flex;
+        gap: 16px;
+        padding: 16px 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        font-size: 14px;
+        font-weight: 600;
+        align-items: center;
+      }
+
+      .steps li:last-child {
+        border-bottom: none;
+      }
+
+      .steps li::before {
+        content: "0" counter(step);
+        font-family: "Syne", sans-serif;
+        font-weight: 800;
+        font-size: 14px;
+        color: #000;
+        background: var(--toxic-blue);
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        flex-shrink: 0;
+        box-shadow: 0 4px 15px rgba(0, 240, 255, 0.4);
+      }
+
+      .cta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        background: var(--text-main);
+        color: var(--toxic-green);
+        text-decoration: none;
+        font-weight: 800;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-size: 14px;
+        padding: 22px;
+        margin-top: 30px;
+        border-radius: 16px;
+        transition: all 0.3s ease;
+      }
+
+      .cta:hover {
+        background: var(--toxic-green);
+        color: var(--text-main);
+        box-shadow: var(--shadow-toxic);
+        transform: translateY(-3px);
+      }
+
+      .soc-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 24px;
+        border-radius: 16px;
+        background: #fff;
+        text-decoration: none;
+        color: var(--text-main);
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+      }
+
+      .soc-link:hover {
+        border-color: var(--toxic-blue);
+        box-shadow: 0 10px 30px rgba(0, 240, 255, 0.3);
+        transform: translateY(-3px);
+      }
+
+      .soc-icon {
+        font-family: "Syne", sans-serif;
+        font-weight: 800;
+        font-size: 24px;
+        background: var(--text-main);
+        color: var(--toxic-blue);
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+      }
+
+      .soc-name {
+        font-size: 15px;
+        font-weight: 800;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      footer {
+        padding: 40px 24px 60px;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.4);
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      footer .fav {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-muted);
+        margin-bottom: 24px;
+      }
+
+      footer .track {
+        font-family: "Syne", sans-serif;
+        font-size: 18px;
+        font-weight: 800;
+        text-transform: uppercase;
+        color: var(--text-main);
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+        transition: all 0.6s cubic-bezier(0.17, 0.84, 0.44, 1);
+      }
+
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      @media (max-width: 400px) {
+        h1 {
+          font-size: 46px;
+        }
+        section {
+          padding: 40px 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header class="reveal">
+        <div class="eyebrow">Hype Accessories</div>
+        <h1>pidviska</h1>
+        <p class="tagline">
+          Зухвала біжутерія для твоїх найяскравіших аутфітів.
+        </p>
+        <p class="lede">
+          Більше ніж аксесуари. Твій хаос, твій стиль, твій почерк.
+        </p>
+      </header>
+
+      <nav class="quick-nav">
+        <a href="#catalog">Наявність</a>
+        <a href="#delivery">Доставка</a>
+        <a href="#payment">Оплата</a>
+        <a href="#order">Замовити</a>
+      </nav>
+
+      <section id="delivery" class="reveal">
+        <p class="sec-label">Доставка</p>
+        <div class="row">
+          <span class="k">Служба</span>
+          <span class="v">Нова Пошта (по всій Україні)</span>
+        </div>
+        <div class="row">
+          <span class="k">Термін</span>
+          <span class="v"><b>1–2 дні</b> з моменту відправки</span>
+        </div>
+        <div class="note">
+          Обов'язково оглядай прикраси на пошті при отриманні!
+        </div>
+      </section>
+
+      <section id="payment" class="reveal">
+        <p class="sec-label">Оплата</p>
+        <div class="row">
+          <span class="k">Спосіб 1</span>
+          <span class="v"
+            >Накладений платіж (мінімальна передоплата 200 грн, решта при
+            отриманні)</span
+          >
+        </div>
+        <div class="row">
+          <span class="k">Спосіб 2</span>
+          <span class="v"
+            >Повна оплата на картку (економія на комісії пошти)</span
+          >
+        </div>
+        <div class="row">
+          <span class="k">Спосіб 3</span>
+          <span class="v">Безпечна угода (олх доставка, mono-базар)</span>
+        </div>
+      </section>
+
+      <section id="catalog" class="reveal">
+        <p class="sec-label">Каталог</p>
+        <div class="tags" id="filterTags">
+          <div class="tag active" data-filter="all">
+            Всі<span class="count" data-count="all"></span>
+          </div>
+          <div class="tag" data-filter="підвіски">
+            Підвіски<span class="count" data-count="підвіски"></span>
+          </div>
+          <div class="tag" data-filter="каблучки">
+            Каблучки<span class="count" data-count="каблучки"></span>
+          </div>
+          <div class="tag" data-filter="сережки">
+            Сережки<span class="count" data-count="сережки"></span>
+          </div>
+          <div class="tag" data-filter="браслети">
+            Браслети<span class="count" data-count="браслети"></span>
+          </div>
+        </div>
+
+        <div class="catalog-grid" id="catalogGrid"></div>
+        <p class="catalog-empty" id="catalogEmpty">Наразі порожньо</p>
+        <button id="loadMoreBtn" class="load-more" style="display: none">
+          Показати ще
+        </button>
+      </section>
+
+      <section id="order" class="reveal">
+        <p class="sec-label">Як замовити</p>
+        <ul class="steps">
+          <li>Кидай скрін прикраси в Telegram</li>
+          <li>Вкажи розмір (для каблучок/браслетів)</li>
+          <li>Обери спосіб оплати</li>
+          <li>Напиши дані для відправки НП</li>
+        </ul>
+        <a href="https://t.me/pidviska" class="cta" target="_blank">
+          Написати в Telegram →
+        </a>
+      </section>
+
+      <section id="socials" class="reveal">
+        <p class="sec-label">Контакти</p>
+        <a href="https://t.me/pidviska" class="soc-link" target="_blank">
+          <span class="soc-icon">TG</span>
+          <span class="soc-name">@pidviska</span>
+        </a>
+      </section>
+
+      <footer class="reveal">
+        <p class="fav">
+          Сяй яскраво. Твоя ідеальна прикраса вже чекає на тебе.
+        </p>
+        <p class="track">PIDVISKA // 2026</p>
+      </footer>
+    </div>
+
+    <script>
+      const revealElements = document.querySelectorAll(".reveal");
+      const revealObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("active");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
+      );
+
+      revealElements.forEach((el) => revealObserver.observe(el));
+
+      /* Каталог */
+      const products = [
+        {
+          photo: "images/vw_saturn.jpg",
+          name: "Підвіска VW Saturn",
+          price: "350 грн",
+          tag: "підвіски",
+        },
+        {
+          photo: "images/brasl_chol.jpg",
+          name: "Браслет Lacoste чоловічий",
+          price: "850 грн",
+          tag: "браслети",
+          sizes: ["20 см"],
+        },
+        {
+          photo: "images/vw_heart.jpg",
+          name: "Підвіска VW Heart",
+          price: "350 грн",
+          tag: "підвіски",
+        },
+        {
+          photo: "images/vw_skull.jpg",
+          name: "Підвіска VW Skull",
+          price: "350 грн",
+          tag: "підвіски",
+        },
+        {
+          photo: "images/vw_pin.jpg",
+          name: "Підвіска VW Pin",
+          price: "350 грн",
+          tag: "підвіски",
+        },
+      ];
+
+      const grid = document.getElementById("catalogGrid");
+      const emptyMsg = document.getElementById("catalogEmpty");
+      const loadMoreBtn = document.getElementById("loadMoreBtn");
+      const tagButtons = document.querySelectorAll(
+        "#filterTags .tag[data-filter]",
+      );
+
+      let currentCategory = "all";
+      let currentRendered = 0;
+      const ITEMS_PER_PAGE = 6;
+
+      function updateCounts() {
+        document.querySelectorAll(".count").forEach((span) => {
+          const key = span.dataset.count;
+          const n =
+            key === "all"
+              ? products.length
+              : products.filter((p) => p.tag === key).length;
+          span.textContent = ` (${n})`;
+        });
+      }
+
+      function renderCatalog(filter, append = false) {
+        if (!append) {
+          grid.innerHTML = "";
+          currentRendered = 0;
+        }
+
+        const items =
+          filter === "all"
+            ? products
+            : products.filter((p) => p.tag === filter);
+
+        if (!append) {
+          emptyMsg.style.display = items.length ? "none" : "block";
+        }
+
+        const itemsToRender = items.slice(
+          currentRendered,
+          currentRendered + ITEMS_PER_PAGE,
+        );
+
+        itemsToRender.forEach((p, index) => {
+          let sizesHtml = "";
+          if (p.sizes && p.sizes.length > 0) {
+            const sizesTags = p.sizes
+              .map((s) => `<span class="p-size">${s}</span>`)
+              .join("");
+            sizesHtml = `<div class="p-sizes">${sizesTags}</div>`;
+          }
+
+          const card = document.createElement("div");
+          card.className = "product reveal";
+          card.style.transitionDelay = `${index * 0.1}s`;
+
+          card.innerHTML = `
+            <div class="photo-wrap">
+              <img src="${p.photo}" alt="${p.name}" loading="lazy">
+              <span class="badge-stock">В наявності</span>
+            </div>
+            <div class="info">
+              <p class="p-name">${p.name}</p>
+              <p class="p-price">${p.price}</p>
+              ${sizesHtml}
+            </div>`;
+
+          grid.appendChild(card);
+          setTimeout(() => card.classList.add("active"), 50);
+        });
+
+        currentRendered += itemsToRender.length;
+
+        if (currentRendered >= items.length) {
+          loadMoreBtn.style.display = "none";
+        } else {
+          loadMoreBtn.style.display = "block";
+        }
+      }
+
+      loadMoreBtn.addEventListener("click", () => {
+        renderCatalog(currentCategory, true);
+      });
+
+      tagButtons.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          tagButtons.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+
+          currentCategory = btn.dataset.filter;
+          renderCatalog(currentCategory, false);
+        });
+      });
+
+      updateCounts();
+      renderCatalog(currentCategory, false);
+    </script>
+  </body>
+</html>
