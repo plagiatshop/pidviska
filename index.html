@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PIDVISKA — зухвала біжутерія</title>
+    <meta
+      name="description"
+      content="Hype Accessories. Зухвала біжутерія для твоїх найяскравіших аутфітів. Більше ніж аксесуари. Твій хаос, твій стиль, твій почерк."
+    />
     <link rel="icon" href="logo.png" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -139,16 +143,26 @@
         background: rgba(255, 255, 255, 0.85);
         backdrop-filter: blur(15px);
         display: flex;
+        flex-wrap: nowrap;
         gap: 8px;
-        padding: 16px 20px;
+        padding: 14px 20px;
         overflow-x: auto;
         border-bottom: 1px solid var(--glass-border);
         border-top: 1px solid var(--glass-border);
-        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
       }
 
       .quick-nav::-webkit-scrollbar {
-        display: none;
+        height: 3px;
+      }
+
+      .quick-nav::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      .quick-nav::-webkit-scrollbar-thumb {
+        background: var(--toxic-green);
+        border-radius: 10px;
       }
 
       .quick-nav a {
@@ -531,6 +545,51 @@
         transform: translateY(0) scale(1);
       }
 
+      .scroll-top-btn {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        width: 48px;
+        height: 48px;
+        background: var(--text-main);
+        color: var(--toxic-green);
+        border: 2px solid var(--toxic-green);
+        border-radius: 12px;
+        font-family: "Syne", sans-serif;
+        font-size: 20px;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(20px);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 999;
+        box-shadow: 0 4px 15px rgba(204, 255, 0, 0.15);
+      }
+
+      .scroll-top-btn.visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      .scroll-top-btn:hover {
+        background: var(--toxic-green);
+        color: var(--text-main);
+        box-shadow: var(--shadow-toxic);
+        transform: translateY(-5px);
+      }
+
+      @media (max-width: 540px) {
+        .scroll-top-btn {
+          bottom: 16px;
+          right: 16px;
+        }
+      }
+
       @media (max-width: 400px) {
         h1 {
           font-size: 46px;
@@ -543,7 +602,7 @@
   </head>
   <body>
     <div class="container">
-      <header class="reveal">
+      <header>
         <div class="eyebrow">Hype Accessories</div>
         <h1>pidviska</h1>
         <p class="tagline">
@@ -559,6 +618,7 @@
         <a href="#delivery">Доставка</a>
         <a href="#payment">Оплата</a>
         <a href="#order">Замовити</a>
+        <a href="#socials">Соцмережі</a>
       </nav>
 
       <section id="delivery" class="reveal">
@@ -632,14 +692,24 @@
           <li>Обери спосіб оплати</li>
           <li>Напиши дані для відправки НП</li>
         </ul>
-        <a href="https://t.me/pidviska" class="cta" target="_blank">
+        <a
+          href="https://t.me/pidviska"
+          class="cta"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Написати в Telegram →
         </a>
       </section>
 
       <section id="socials" class="reveal">
-        <p class="sec-label">Контакти</p>
-        <a href="https://t.me/pidviska" class="soc-link" target="_blank">
+        <p class="sec-label">Наші соцмережі</p>
+        <a
+          href="https://t.me/pidviska"
+          class="soc-link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <span class="soc-icon">TG</span>
           <span class="soc-name">@pidviska</span>
         </a>
@@ -652,6 +722,10 @@
         <p class="track">PIDVISKA // 2026</p>
       </footer>
     </div>
+
+    <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Нагору">
+      ↑
+    </button>
 
     <script>
       const revealElements = document.querySelectorAll(".reveal");
@@ -666,10 +740,24 @@
         },
         { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
       );
-
       revealElements.forEach((el) => revealObserver.observe(el));
 
-      /* Каталог */
+      const scrollTopBtn = document.getElementById("scrollTopBtn");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          scrollTopBtn.classList.add("visible");
+        } else {
+          scrollTopBtn.classList.remove("visible");
+        }
+      });
+      scrollTopBtn.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+        history.replaceState(null, null, " ");
+      });
+
       const products = [
         {
           photo: "images/vw_saturn.jpg",
